@@ -59,16 +59,17 @@ tspan = 0:0.2:4;
 
 [D, x] = cheb(n);
 y = x;
-D(1,:) = 0; D(end, :) = 0;
 
-Dx2 = (10*D)^2; Dy2 = (12*D)^2;
-I = eye(length(Dx2));
-DD2 = kron(I, Dx2) + kron(Dy2, I);
+
+D2 = D^2;
+D2(1,:) = 0; D2(end, :) = 0;
+I = eye(n + 1);
+DD2 = kron(I, 100 * D2) + kron(144 * D2, I);
 
 [X, Y] = meshgrid(x, y);
 
-u = tanh(sqrt(X.^2+Y.^2)).*cos(angle(X+j*Y)-(sqrt(X.^2+Y.^2))) ;
-v = tanh(sqrt(X.^2+Y.^2)).*sin(angle(X+j*Y)-(sqrt(X.^2+Y.^2))) ;
+u = tanh(sqrt(X.^2+Y.^2)).*cos(angle(X+i*Y)-(sqrt(X.^2+Y.^2))) ;
+v = tanh(sqrt(X.^2+Y.^2)).*sin(angle(X+i*Y)-(sqrt(X.^2+Y.^2))) ;
 u = reshape(u, (n+1)^2, 1);
 v = reshape(v, (n+1)^2, 1);
 y0 = [u; v];
