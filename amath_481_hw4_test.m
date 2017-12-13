@@ -55,7 +55,7 @@ tic
 n = 50;
 Lx = 10; Ly = 12; Nx = 20; Ny = 24;
 beta = 1; Diff1 = 0.1; Diff2 = Diff1;
-tspan = 0:0.2:5;
+tspan = 0:0.2:4;
 
 [D, x] = cheb(n);
 y = x;
